@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction, Errback, Router } from 'express';
-import {getNameService, createNameService, deleteNameService, UpdateNameService} from '../Services/user.service'
+import { getNameService, createNameService, deleteNameService, UpdateNameService } from '../Services/user.service'
 
 /**
  * Renders name when `/getUser/:Id` route is requested
@@ -12,7 +12,11 @@ import {getNameService, createNameService, deleteNameService, UpdateNameService}
  */
 export const getName = (req: Request, res: Response, next: NextFunction) => {
     const name = getNameService(Number(req.params.Id));
-    res.status(200).send({msg:name});
+    if (name !== "") {
+        res.status(200).send({ msg: name });
+    } else {
+        res.status(204).send({ msg: name });
+    }
 }
 
 /**
@@ -25,8 +29,11 @@ export const getName = (req: Request, res: Response, next: NextFunction) => {
  * @returns {object}
  */
 export const createName = (req: Request, res: Response, next: NextFunction) => {
+    if (req.body.name === undefined || req.body.name === "") {
+        return next("please specify a name")
+    }
     const response = createNameService(req.body.name);
-    res.status(201).send({msg:response});
+    res.status(201).send({ msg: response });
 }
 
 /**
@@ -40,7 +47,7 @@ export const createName = (req: Request, res: Response, next: NextFunction) => {
  */
 export const deleteUser = (req: Request, res: Response, next: NextFunction) => {
     const response = deleteNameService(Number(req.params.Id));
-    res.status(200).send({msg:response});
+    res.status(200).send({ msg: response });
 }
 
 /**
@@ -54,5 +61,5 @@ export const deleteUser = (req: Request, res: Response, next: NextFunction) => {
  */
 export const updateUser = (req: Request, res: Response, next: NextFunction) => {
     const response = UpdateNameService(Number(req.params.Id), req.body);
-    res.status(201).send({msg:response});
+    res.status(201).send({ msg: response });
 }

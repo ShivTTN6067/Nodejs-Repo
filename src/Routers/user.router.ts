@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { getName, createName, deleteUser, updateUser } from '../Controller/user.controller';
 import { authChecker } from '../Middleware/userRelated.middleware';
-import {errorCatcher} from '../Error/catchError.middleware';
+import { errorCatcher } from '../Error/catchError.middleware';
 
 const userRouters = Router();
 

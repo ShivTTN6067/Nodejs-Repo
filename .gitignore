@@ -1,5 +1,4 @@
 .env
-.nyc_output
 build
 coverage
 db

@@ -1,6 +1,4 @@
 .env
-build
-coverage
-db
-node_modules
-test-reports
+./build
+./coverage
+./node_modules

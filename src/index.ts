@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-import Routes from './Routers';
+import Routes from './routers';
 
 import { Express, Request, Response, NextFunction, Errback } from 'express';
 
@@ -41,5 +41,3 @@ app.use((err: Errback, req: Request, res: Response, next: NextFunction) => {
 app.listen(process.env.PORT, () => {
   console.info(` listening at 4000`)
 });
-
-export default app;

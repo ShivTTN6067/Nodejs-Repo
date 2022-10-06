@@ -1,8 +1,8 @@
-import { Express, Request, Response, NextFunction, Errback, Router } from 'express';
-import userRouters from './user.router';
+import { Router } from "express";
+import userRouters from "./router";
 
 const Routers = Router();
 
-Routers.use('/user', userRouters)
+Routers.use("/user", userRouters);
 
 export default Routers;

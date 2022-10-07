@@ -3,7 +3,7 @@ import { getAllUsersData, getUserData, createUserData, deleteUserData, updateUse
 
 describe("Test cases for user CRUD operations", () => {
 
-	describe("Test1", () => {
+	describe("Test1 ", () => {
 		it("Test user getUserData", () => {
 			expect(getUserData(0)).toStrictEqual({ name: "John" });
 		});

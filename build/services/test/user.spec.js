@@ -19,6 +19,9 @@ const user_1 = require("../user");
         it("Test user delete name record", () => {
             (0, globals_1.expect)((0, user_1.deleteUserData)(0)).toStrictEqual({ name: "John" });
         });
+        it("Test user delete name record for non exist", () => {
+            (0, globals_1.expect)((0, user_1.deleteUserData)(2)).toBe("");
+        });
         it("Test user delete name record", () => {
             (0, globals_1.expect)((0, user_1.updateUserData)(0, {
                 "name": "fgdxgfhj",

@@ -6,8 +6,9 @@ const authChecker = (req, res, next) => {
     if (((_a = req.headers['authorization']) === null || _a === void 0 ? void 0 : _a.split(' ')[1]) === process.env.ACCESSCODE) {
         return next();
     }
-    res.status(401).send({
-        msg: "Invalid credentials",
+    res.statusCode = 401;
+    res.json({
+        error: "Missing JWT token from the 'Authorization' header"
     });
 };
 exports.authChecker = authChecker;

@@ -9,7 +9,7 @@ class User {
 	};
 
 	getUserData = (id: number): userType => {
-		const res = userData.getRecord(id)
+		const res = userData.getRecord(id);
 		return res;
 	};
 

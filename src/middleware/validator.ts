@@ -6,7 +6,10 @@ export const bodyValidator = async (req: Request, res: Response, next: NextFunct
 		await userSchema.validateAsync(req.body);
 		next();
 	} catch (err) {
-		res.status(400).send({ error: err });
+		res.statusCode = 400;
+		res.json({
+			error:err
+		});
 	}
 };
 
@@ -15,6 +18,9 @@ export const paramsValidator = async (req: Request, res: Response, next: NextFun
 		req.params = await paramsSchema.validateAsync(req.params);
 		next();
 	} catch (err) {
-		res.status(400).send({ error: err });
+		res.statusCode = 400;
+		res.json({
+			error:err
+		});
 	}
 };

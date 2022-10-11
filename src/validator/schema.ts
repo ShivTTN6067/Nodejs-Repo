@@ -1,10 +1,17 @@
 import Joi from "joi";
 
 export const userSchema = Joi.object({
-    name: Joi.string()
-        .alphanum()
-        .min(3)
-        .max(30),
-    class: Joi.number(),
+	name: Joi.string()
+		.alphanum()
+		.min(3)
+		.max(30)
+		.required(),
+	class: Joi.number(),
+});
+
+
+export const paramsSchema = Joi.object({
+	id: Joi.number()
+		.required()
 });
 

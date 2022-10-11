@@ -1,26 +1,32 @@
-import { user } from '../model/userModel';
-import {userType} from '../types/userTypes'
+import userData from "../model/user-model";
+import { userType, getUserDataType } from "../types/user-types";
 
-export const getAllUsersData = () : object => {
-    return user;
+class User {
+
+	getAllUsersData = (): getUserDataType => {
+		const res = userData.getAllRecords();
+		return res;
+	};
+
+	getUserData = (id: number): userType => {
+		const res = userData.getRecord(id)
+		return res;
+	};
+
+	createUserData = (newUserData: userType): number => {
+		const response = userData.create(newUserData);
+		return response;
+	};
+
+	deleteUserData = (id: number): getUserDataType => {
+		const res = userData.delete(id);
+		return res;
+	};
+
+	updateUserData = (id: number, updateUserValues: userType): userType => {
+		const response = userData.update(id, updateUserValues);
+		return response;
+	};
 }
 
-export const getUserData = (id: number) : object | undefined=> {
-    return user[id];
-}
-
-export const createUserData = (userData: userType) : string => {
-    user.push(userData);
-    return "created"
-}
-
-export const deleteUserData = (id: number) : object | string => {
-    const res = user.splice(id, 1)
-    return res.length ? res[0] : "";
-}
-
-export const updateUserData = (id: number, updateUserValues: object) : object => {
-    const res = { ...user[id], ...updateUserValues }
-    user[id] = res;
-    return user[id];
-}
+export default new User();

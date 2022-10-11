@@ -1,17 +1,18 @@
 import { Router } from "express";
-import { getAllUsers, getUser, createUser, deleteUser, updateUser } from "../controller/userController";
+import UserController from "../controller/user-controller";
 import { authChecker } from "../middleware/authentication";
+import { bodyValidator, paramsValidator } from "../middleware/validator";
 
 const userRouters = Router();
 
-userRouters.get("/", authChecker, getAllUsers);
+userRouters.get("/", authChecker, UserController.getAllUsers);
 
-userRouters.get("/:id", authChecker, getUser);
+userRouters.get("/:id", authChecker, paramsValidator, UserController.getUser);
 
-userRouters.post("/", authChecker, createUser);
+userRouters.post("/", authChecker, bodyValidator, UserController.createUser);
 
-userRouters.delete("/:id", authChecker, deleteUser);
+userRouters.delete("/:id", authChecker, paramsValidator, UserController.deleteUser);
 
-userRouters.put("/:id", authChecker, updateUser);
+userRouters.put("/:id", authChecker, paramsValidator, bodyValidator, UserController.updateUser);
 
 export default userRouters;

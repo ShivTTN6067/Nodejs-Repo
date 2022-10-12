@@ -3,7 +3,7 @@ import { getUserDataType, userType } from "../types/user-types";
 
 class UserData {
 
-	public data: getUserDataType ;
+	public data: getUserDataType;
 
 	constructor() {
 		this.data = [];
@@ -21,9 +21,9 @@ class UserData {
 		return this.data.splice(id, 1);
 	}
 
-	create(newData: userType) : number {
+	create(newData: userType): number {
 		this.data.push(newData);
-		return this.data.length-1;
+		return this.data.length - 1;
 	}
 
 	update(id: number, data: userType): userType {

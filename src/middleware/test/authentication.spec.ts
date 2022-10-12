@@ -17,7 +17,7 @@ describe("authorization", () => {
 		nextFunction = jest.fn();
 	});
 
-	it("It should call without headers", async () => {
+	it("It should call without headers", () => {
 		const expectedResponse = {
 			"error": "Missing JWT token from the 'Authorization' header"
 		};
@@ -26,7 +26,7 @@ describe("authorization", () => {
 		expect(mockResponse.json).toBeCalledWith(expectedResponse);
 	});
 
-	it("It should call with wronge token", async () => {
+	it("It should call with wronge token", () => {
 		mockRequest = {
 			headers: {
 				"authorization": "Bearer qww"
@@ -36,8 +36,8 @@ describe("authorization", () => {
 
 		expect(nextFunction).toBeCalledTimes(0);
 	});
-    
-	it("with \"authorization\" header", async () => {
+
+	it("with \"authorization\" header", () => {
 		mockRequest = {
 			headers: {
 				"authorization": "Bearer 123321123"

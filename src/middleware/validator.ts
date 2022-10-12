@@ -8,7 +8,7 @@ export const bodyValidator = async (req: Request, res: Response, next: NextFunct
 	} catch (err) {
 		res.statusCode = 400;
 		res.json({
-			error:err
+			error: err
 		});
 	}
 };
@@ -20,7 +20,7 @@ export const paramsValidator = async (req: Request, res: Response, next: NextFun
 	} catch (err) {
 		res.statusCode = 400;
 		res.json({
-			error:err
+			error: err
 		});
 	}
 };

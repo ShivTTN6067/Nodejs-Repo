@@ -7,11 +7,11 @@ describe("POST /users", () => {
 			.post("/users/")
 			.set("Authorization", "Bearer " + "123321123")
 			.send({ name: "testname", class: 12 });
-		expect(response.body).toEqual({Id:0});
+		expect(response.body).toEqual({ Id: 0 });
 		expect(response.statusCode).toEqual(201);
 	});
 
-	it("It should create a user with wronge request data",async () => {
+	it("It should create a user with wronge request data", async () => {
 		const response = await request(address)
 			.post("/users/")
 			.set("Authorization", "Bearer " + "123321123")
@@ -19,7 +19,7 @@ describe("POST /users", () => {
 		expect(response.statusCode).toEqual(400);
 	});
 
-	it("It should create a user without request body",async () => {
+	it("It should create a user without request body", async () => {
 		const response = await request(address)
 			.post("/users/")
 			.set("Authorization", "Bearer " + "123321123");
@@ -60,7 +60,7 @@ describe("GET /users/:id", () => {
 			.get("/users/0")
 			.set("Authorization", "Bearer " + "123321123");
 		expect(response.body).toEqual({ name: "testname", class: 12 });
-		expect(response.statusCode).toEqual(200);	
+		expect(response.statusCode).toEqual(200);
 	});
 
 	it("It should respond unauthorized access", async () => {
@@ -71,18 +71,18 @@ describe("GET /users/:id", () => {
 		expect(response.statusCode).toEqual(401);
 	});
 
-	it("It should respond not found when user detail is not exist",async () => {
+	it("It should respond not found when user detail is not exist", async () => {
 		const response = await request(address)
 			.get("/users/2")
 			.set("Authorization", "Bearer " + "123321123");
-		expect(response.statusCode).toEqual(404);	
+		expect(response.statusCode).toEqual(404);
 	});
 
-	it("It should respond not found when request have wronge params",async () => {
+	it("It should respond not found when request have wronge params", async () => {
 		const response = await request(address)
 			.get("/users/'0")
 			.set("Authorization", "Bearer " + "123321123");
-		expect(response.statusCode).toEqual(400);	
+		expect(response.statusCode).toEqual(400);
 	});
 
 });

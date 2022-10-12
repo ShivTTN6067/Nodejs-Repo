@@ -14,7 +14,6 @@ class UserController {
 
 	getUser = (req: Request, res: Response, next: NextFunction): void => {
 		try {
-			//console.log("-------========------",typeof(req.params.id));
 			const data = user.getUserData(+req.params.id);
 			data ?? res.status(404).send(data);
 			res.status(200).send(data);
@@ -26,7 +25,7 @@ class UserController {
 	createUser = (req: Request, res: Response, next: NextFunction): void => {
 		try {
 			const response = user.createUserData(req.body);
-			res.status(201).send({Id:response});
+			res.status(201).send({ Id: response });
 		} catch (err) {
 			res.status(501).send({ msg: err });
 		}

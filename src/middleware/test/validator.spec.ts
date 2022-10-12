@@ -22,13 +22,13 @@ describe("Test for body validator", () => {
 	});
 
 	it("Should validateAsync method with wronge data", async () => {
-		mockRequest = { body: { name: "abc", class: 12, roll:33 } };
+		mockRequest = { body: { name: "abc", class: 12, roll: 33 } };
 		await bodyValidator(mockRequest as Request, mockResponse as Response, mockNext);
 		expect(mockNext).toBeCalledTimes(0);
 	});
 
 	it("Should validateAsync method without body", async () => {
-		mockRequest = { body: { } };
+		mockRequest = { body: {} };
 		await bodyValidator(mockRequest as Request, mockResponse as Response, mockNext);
 		expect(mockNext).toBeCalledTimes(0);
 	});
@@ -50,13 +50,13 @@ describe("Test for params validator", () => {
 	});
 
 	it("Should params valid", async () => {
-		mockRequest = { params: { id: "0"} };
+		mockRequest = { params: { id: "0" } };
 		await paramsValidator(mockRequest as Request, mockResponse as Response, mockNext);
 		expect(mockNext).toBeCalledTimes(1);
 	});
 
 	it("Should validateAsync method with wronge params", async () => {
-		mockRequest = { params: { id: ""} };
+		mockRequest = { params: { id: "" } };
 		await paramsValidator(mockRequest as Request, mockResponse as Response, mockNext);
 		expect(mockNext).toBeCalledTimes(0);
 	});

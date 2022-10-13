@@ -16,7 +16,7 @@ describe("UserController", () => {
 		mockNextFunction = jest.fn();
 	});
 
-	describe("create user", () => {
+	describe("create user ", () => {
 		it("should return a success", () => {
 
 			mockRequest = {

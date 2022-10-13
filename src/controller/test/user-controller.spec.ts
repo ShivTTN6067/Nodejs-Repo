@@ -59,6 +59,18 @@ describe("UserController", () => {
 			expect(mockResponse.send).toHaveBeenCalledWith({ name: "testname", class: 12 });
 			expect(mockResponse.status).toHaveBeenCalledWith(200);
 		});
+
+		it("should return a bad request ", () => {
+
+			mockRequest = {
+				params: {
+					id: "0hgv"
+				}
+			};
+
+			user.getUser(mockRequest as Request, mockResponse as Response, mockNextFunction);
+			expect(mockResponse.status).toHaveBeenCalledWith(404);
+		});
 	});
 
 	describe("delete a user data", () => {
@@ -73,6 +85,19 @@ describe("UserController", () => {
 			user.deleteUser(mockRequest as Request, mockResponse as Response, mockNextFunction);
 			expect(mockResponse.send).toHaveBeenCalledWith([{ name: "testname", class: 12 }]);
 			expect(mockResponse.status).toHaveBeenCalledWith(200);
+		});
+
+		it("should return no data for deleted a user data", () => {
+
+			mockRequest = {
+				params: {
+					id: "3"
+				}
+			};
+
+			user.deleteUser(mockRequest as Request, mockResponse as Response, mockNextFunction);
+			expect(mockResponse.send).toHaveBeenCalledWith({ msg: "No data" });
+			expect(mockResponse.status).toHaveBeenCalledWith(500);
 		});
 	});
 

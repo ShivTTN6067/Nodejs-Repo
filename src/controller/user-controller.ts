@@ -15,8 +15,7 @@ class UserController {
 	getUser = (req: Request, res: Response, next: NextFunction): void => {
 		try {
 			const data = user.getUserData(+req.params.id);
-			data ?? res.status(404).send(data);
-			res.status(200).send(data);
+			!data ? res.status(404).send(data) :res.status(200).send(data);
 		} catch (err) {
 			res.status(400).send({ msg: err });
 		}

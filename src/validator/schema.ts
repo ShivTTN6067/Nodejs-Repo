@@ -12,6 +12,7 @@ export const userSchema = Joi.object({
 
 export const paramsSchema = Joi.object({
 	id: Joi.number()
+		.integer()
 		.required()
 });
 

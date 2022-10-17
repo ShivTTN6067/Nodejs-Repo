@@ -10,17 +10,19 @@
     ]
   },
   "scripts": {
+    "start": "npm run build && node build/index.js",
+    
     "start:dev": "nodemon",
     "build": "  tsc",
-    "start": "npm run build && node build/index.js",
     "test": " jest",
-    "lint": "eslint --fix --ext .ts .",
-    "prestart": "cp scripts/pre-commit .git/hooks/ && chmod +x .git/hooks/pre-commit && echo 'hook copied'"
+    "lint": "eslint --fix --ext .ts ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "pre-commit": [ "lint" ],
+  "pre-commit": [
+    "lint"
+  ],
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@babel/plugin-transform-typescript": "^7.19.3",

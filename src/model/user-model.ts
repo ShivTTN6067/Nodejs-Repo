@@ -1,4 +1,3 @@
-
 import { getUserDataType, userType } from "../types/user-types";
 
 class UserData {

@@ -6,7 +6,8 @@ export const userSchema = Joi.object({
 		.min(3)
 		.max(30)
 		.required(),
-	class: Joi.number(),
+	class: Joi.number()
+		.integer(),
 });
 
 

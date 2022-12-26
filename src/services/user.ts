@@ -1,32 +1,35 @@
-import userData from "../model/user-model";
-import { userType, getUserDataType } from "../types/user-types";
+import userModel from "../model/user-model";
+import { userType } from "../types/user-types";
 
 class User {
 
-	getAllUsersData = (): getUserDataType => {
-		const res = userData.getAllRecords();
-		return res;
+	getAllUsersData = async () => {
+		const users = await userModel.find({});
+		return users;
 	};
 
-	getUserData = (id: number): userType => {
-		const res = userData.getRecord(id);
-		return res;
+	getUserData = async (id: string) => {
+		const users = await userModel.find({id});
+		return users;
 	};
 
-	createUserData = (newUserData: userType): number => {
-		const response = userData.create(newUserData);
-		return response;
+	createUserData = async (newUserData: userType): Promise<Object> => {
+		const user = new userModel(newUserData);
+		await user.save();
+		return user;
 	};
 
-	deleteUserData = (id: number): getUserDataType => {
-		const res = userData.delete(id);
-		return res;
+	deleteUserData = async (id: String): Promise<Object> => {
+		const res = await userModel.deleteOne({id});
+		return res.deletedCount;
 	};
 
-	updateUserData = (id: number, updateUserValues: userType): userType => {
-		const response = userData.update(id, updateUserValues);
+	updateUserData = async (updateUserValues: userType): Promise<Object> => {
+		const response = await userModel.updateOne(updateUserValues);
 		return response;
 	};
 }
 
-export default new User();
+const userObject = Object.freeze(new User());
+
+export default userObject;

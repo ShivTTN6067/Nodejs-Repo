@@ -1,35 +1,20 @@
-import { getUserDataType, userType } from "../types/user-types";
+import  mongoose from "mongoose";
 
-class UserData {
+const UserSchema = new mongoose.Schema({
+	id: {
+		type: String,
+		required: true,
+	},
+	name: {
+		type: String,
+		required: true,
+	},
+	class: {
+		type: Number,
+		default: 0,
+	},
+});
 
-	public data: getUserDataType;
+const User = mongoose.model("User", UserSchema);
 
-	constructor() {
-		this.data = [];
-	}
-
-	getRecord(id: number): userType {
-		return this.data[id];
-	}
-
-	getAllRecords(): getUserDataType {
-		return this.data;
-	}
-
-	delete(id: number): getUserDataType {
-		return this.data.splice(id, 1);
-	}
-
-	create(newData: userType): number {
-		this.data.push(newData);
-		return this.data.length - 1;
-	}
-
-	update(id: number, data: userType): userType {
-		this.data[id] = { ...this.data[id], ...data };
-		return this.data[id];
-	}
-
-}
-
-export default new UserData();
+export default User;

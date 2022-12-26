@@ -1,6 +1,9 @@
 import Joi from "joi";
 
 export const userSchema = Joi.object({
+	id: Joi.string()
+		.alphanum()
+		.required(),
 	name: Joi.string()
 		.alphanum()
 		.min(3)
@@ -12,8 +15,8 @@ export const userSchema = Joi.object({
 
 
 export const paramsSchema = Joi.object({
-	id: Joi.number()
-		.integer()
+	id: Joi.string()
+		.alphanum()
 		.required()
 });
 

@@ -13,6 +13,6 @@ userRouters.post("/", authChecker, bodyValidator, UserController.createUser);
 
 userRouters.delete("/:id", authChecker, paramsValidator, UserController.deleteUser);
 
-userRouters.put("/:id", authChecker, paramsValidator, bodyValidator, UserController.updateUser);
+userRouters.put("/", authChecker, bodyValidator, UserController.updateUser);
 
 export default userRouters;

@@ -16,7 +16,7 @@ describe("Test for body validator", () => {
 	});
 
 	it("Should validateAsync method record", async () => {
-		mockRequest = { body: { name: "abc", class: 12 } };
+		mockRequest = { body: {id:"qw", name: "abc", class: 12 } };
 		await bodyValidator(mockRequest as Request, mockResponse as Response, mockNext);
 		expect(mockNext).toBeCalledTimes(1);
 	});

@@ -3,42 +3,42 @@ import user from "../services/user";
 
 class UserController {
 
-	getAllUsers = (req: Request, res: Response, next: NextFunction): void => {
+	getAllUsers = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 		try {
-			const data = user.getAllUsersData();
+			const data = await user.getAllUsersData();
 			res.status(200).send(data);
 		} catch (err) {
 			next(err);
 		}
 	};
 
-	getUser = (req: Request, res: Response, next: NextFunction): void => {
+	getUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 		try {
-			const data = user.getUserData(+req.params.id);
-			!data ? res.status(404).send(data) :res.status(200).send(data);
+			const data = await user.getUserData(req.params.id);
+			!data.length ? res.status(404).send(data) :res.status(200).send(data);
 		} catch (err) {
 			res.status(400).send({ msg: err });
 		}
 	};
 
-	createUser = (req: Request, res: Response, next: NextFunction): void => {
+	createUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 		try {
-			const response = user.createUserData(req.body);
-			res.status(201).send({ Id: response });
+			const response = await user.createUserData(req.body);
+			res.status(201).send(response);
 		} catch (err) {
 			res.status(501).send({ msg: err });
 		}
 	};
 
-	deleteUser = (req: Request, res: Response, next: NextFunction): void => {
-		const response = user.deleteUserData(parseInt(req.params.id));
-		response.length !== 0 ? res.status(200).send(response) :
+	deleteUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+		const response = await user.deleteUserData(req.params.id);
+		response ? res.status(200).send({msg: "data deleted"}) :
 			res.status(500).send({ msg: "No data" });
 	};
 
-	updateUser = (req: Request, res: Response, next: NextFunction): void => {
+	updateUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 		try {
-			const response = user.updateUserData(parseInt(req.params.id), req.body);
+			const response = await user.updateUserData(req.body);
 			res.status(201).send(response);
 		} catch (err) {
 			next(err);
@@ -46,4 +46,6 @@ class UserController {
 	};
 }
 
-export default new UserController(); 
+const userControllerObject = Object.freeze(new UserController());
+
+export default userControllerObject; 

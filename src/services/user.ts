@@ -1,10 +1,14 @@
-import userModel from "../model/user-model";
-import { userType } from "../types/user-types";
-
+import userModel from '../model/user-model';
+import { userType } from '../types/user-types';
+import { callAwsLamda } from '../utils/aws-utils';
+import { LAMDA_FUNCTIONS } from '../constants';
 class User {
 
 	getAllUsersData = async () => {
 		const users = await userModel.find({});
+		const payload = {name: 'amit'};
+		const lamda = await callAwsLamda(LAMDA_FUNCTIONS.ALL_USERS_LAMDA_FN, payload);
+		console.log(lamda);
 		return users;
 	};
 

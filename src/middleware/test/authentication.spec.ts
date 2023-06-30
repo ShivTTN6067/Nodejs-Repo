@@ -1,9 +1,9 @@
-import { Request, Response, NextFunction } from "express";
-import { authChecker } from "../authentication";
-import dotenv from "dotenv";
+import { Request, Response, NextFunction } from 'express';
+import { authChecker } from '../authentication';
+import dotenv from 'dotenv';
 dotenv.config();
 
-describe("authorization", () => {
+describe('authorization', () => {
 
 	let mockRequest: Partial<Request>;
 	let mockResponse: Partial<Response>;
@@ -17,19 +17,19 @@ describe("authorization", () => {
 		nextFunction = jest.fn();
 	});
 
-	it("It should call without headers", () => {
+	it('It should call without headers', () => {
 		const expectedResponse = {
-			"error": "Missing JWT token from the 'Authorization' header"
+			'error': 'Missing JWT token from the \'Authorization\' header'
 		};
 		authChecker(mockRequest as Request, mockResponse as Response, nextFunction);
 
 		expect(mockResponse.json).toBeCalledWith(expectedResponse);
 	});
 
-	it("It should call with wronge token", () => {
+	it('It should call with wronge token', () => {
 		mockRequest = {
 			headers: {
-				"authorization": "Bearer qww"
+				'authorization': 'Bearer qww'
 			}
 		};
 		authChecker(mockRequest as Request, mockResponse as Response, nextFunction);
@@ -37,10 +37,10 @@ describe("authorization", () => {
 		expect(nextFunction).toBeCalledTimes(0);
 	});
 
-	it("with \"authorization\" header", () => {
+	it('with "authorization" header', () => {
 		mockRequest = {
 			headers: {
-				"authorization": "Bearer 123321123"
+				'authorization': 'Bearer 123321123'
 			}
 		};
 		authChecker(mockRequest as Request, mockResponse as Response, nextFunction as NextFunction);

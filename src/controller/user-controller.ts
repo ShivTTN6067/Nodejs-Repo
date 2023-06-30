@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from "express";
-import user from "../services/user";
+import { Request, Response, NextFunction } from 'express';
+import user from '../services/user';
 
 class UserController {
 
@@ -32,8 +32,8 @@ class UserController {
 
 	deleteUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 		const response = await user.deleteUserData(req.params.id);
-		response ? res.status(200).send({msg: "data deleted"}) :
-			res.status(500).send({ msg: "No data" });
+		response ? res.status(200).send({msg: 'data deleted'}) :
+			res.status(500).send({ msg: 'No data' });
 	};
 
 	updateUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {

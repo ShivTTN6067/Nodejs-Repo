@@ -13,6 +13,8 @@ userRouters.post('/', authChecker, bodyValidator, UserController.createUser);
 
 userRouters.delete('/:id', authChecker, paramsValidator, UserController.deleteUser);
 
-userRouters.put('/', authChecker, bodyValidator, UserController.updateUser);
+userRouters.put('/:id', authChecker, paramsValidator, bodyValidator, UserController.updateUser);
+
+userRouters.get('/send/sms', authChecker, UserController.sendSms);
 
 export default userRouters;

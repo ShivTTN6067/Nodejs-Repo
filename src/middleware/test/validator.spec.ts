@@ -16,7 +16,7 @@ describe('Test for body validator', () => {
 	});
 
 	it('Should validateAsync method record', async () => {
-		mockRequest = { body: {id:'qw', name: 'abc', class: 12 } };
+		mockRequest = { body: { name: 'abc', class: 12 } };
 		await bodyValidator(mockRequest as Request, mockResponse as Response, mockNext);
 		expect(mockNext).toBeCalledTimes(1);
 	});
@@ -50,7 +50,7 @@ describe('Test for params validator', () => {
 	});
 
 	it('Should params valid', async () => {
-		mockRequest = { params: { id: '0' } };
+		mockRequest = { params: { id: '64a2a13e529fabde81bc15d4' } };
 		await paramsValidator(mockRequest as Request, mockResponse as Response, mockNext);
 		expect(mockNext).toBeCalledTimes(1);
 	});

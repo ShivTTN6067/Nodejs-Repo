@@ -6,14 +6,11 @@ class User {
 
 	getAllUsersData = async () => {
 		const users = await userModel.find({});
-		const payload = {name: 'amit'};
-		const lamda = await callAwsLamda(LAMDA_FUNCTIONS.ALL_USERS_LAMDA_FN, payload);
-		console.log(lamda);
 		return users;
 	};
 
 	getUserData = async (id: string) => {
-		const users = await userModel.find({id});
+		const users = await userModel.find({_id:id});
 		return users;
 	};
 
@@ -24,13 +21,19 @@ class User {
 	};
 
 	deleteUserData = async (id: String): Promise<Object> => {
-		const res = await userModel.deleteOne({id});
+		const res = await userModel.deleteOne({_id:id});
 		return res.deletedCount;
 	};
 
-	updateUserData = async (updateUserValues: userType): Promise<Object> => {
-		const response = await userModel.updateOne(updateUserValues);
+	updateUserData = async (userId: string, updateUserValues: userType): Promise<Object> => {
+		const response = await userModel.updateOne({_id: userId}, { $set: {...updateUserValues}});
 		return response;
+	};
+
+	sendSmsByLamda = async (): Promise<void> => {
+		const payload = {name: 'amit'};
+		const lamda = await callAwsLamda(LAMDA_FUNCTIONS.ALL_USERS_LAMDA_FN, payload);
+		return lamda;
 	};
 }
 

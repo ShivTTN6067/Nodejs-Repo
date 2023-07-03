@@ -6,7 +6,7 @@ describe('POST /users', () => {
 		const response = await request(address)
 			.post('/users/')
 			.set('Authorization', 'Bearer ' + '123321123')
-			.send({id:'qw', name: 'testname', class: 12 });
+			.send({ name: 'testname', class: 12 });
 		expect(response.statusCode).toEqual(201);
 	});
 
@@ -55,7 +55,7 @@ describe('GET /users', () => {
 describe('GET /users/:id', () => {
 	it('It should get a user details', async () => {
 		const response = await request(address)
-			.get('/users/qw')
+			.get('/users/64a2a13e529fabde81bc15d4')
 			.set('Authorization', 'Bearer ' + '123321123');
 		expect(response.statusCode).toEqual(200);
 	});
@@ -70,9 +70,9 @@ describe('GET /users/:id', () => {
 
 	it('It should respond not found when user detail is not exist', async () => {
 		const response = await request(address)
-			.get('/users/2')
+			.get('/users/h')
 			.set('Authorization', 'Bearer ' + '123321123');
-		expect(response.statusCode).toEqual(404);
+		expect(response.statusCode).toEqual(400);
 	});
 
 	it('It should respond not found when request have wronge params', async () => {
@@ -87,7 +87,7 @@ describe('GET /users/:id', () => {
 describe('DELETE /users/:id', () => {
 	it('It should delete a user', async () => {
 		const response = await request(address)
-			.delete('/users/qw')
+			.delete('/users/64a2a13e529fabde81bc15d4')
 			.set('Authorization', 'Bearer ' + '123321123');
 		expect(response.statusCode).toEqual(200);
 	});
@@ -104,9 +104,9 @@ describe('DELETE /users/:id', () => {
 describe('PUT /users/', () => {
 	it('It should update a user ', async () => {
 		const response = await request(address)
-			.put('/users/')
+			.put('/users/64a2a13e529fabde81bc15d4')
 			.set('Authorization', 'Bearer ' + '123321123')
-			.send({id:'qw', name: 'kim', class: 12 });
+			.send({ name: 'kim', class: 12 });
 		expect(response.statusCode).toEqual(201);
 	});
 
@@ -115,7 +115,7 @@ describe('PUT /users/', () => {
 			.put('/users/')
 			.set('Authorization', 'Bearer ' + '123321123')
 			.send({ name: 'kim', class: 12, roll: '78' });
-		expect(response.statusCode).toEqual(400);
+		expect(response.statusCode).toEqual(404);
 	});
 
 	it('It should respond bad request when donot pass request body', async () => {
@@ -123,7 +123,7 @@ describe('PUT /users/', () => {
 			.put('/users/')
 			.set('Authorization', 'Bearer ' + '123321123')
 			.send();
-		expect(response.statusCode).toEqual(400);
+		expect(response.statusCode).toEqual(404);
 	});
 
 });

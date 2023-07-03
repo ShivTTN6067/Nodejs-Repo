@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import { isValidObjectId } from 'mongoose';
 import { userSchema, paramsSchema } from '../validator/schema';
 
 export const bodyValidator = async (req: Request, res: Response, next: NextFunction) => {
@@ -15,6 +16,9 @@ export const bodyValidator = async (req: Request, res: Response, next: NextFunct
 
 export const paramsValidator = async (req: Request, res: Response, next: NextFunction) => {
 	try {
+		if(!isValidObjectId(req.params.id)){
+			throw new Error('wronge id');
+		}
 		req.params = await paramsSchema.validateAsync(req.params);
 		next();
 	} catch (err) {

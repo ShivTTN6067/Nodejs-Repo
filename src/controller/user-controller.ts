@@ -38,7 +38,16 @@ class UserController {
 
 	updateUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 		try {
-			const response = await user.updateUserData(req.body);
+			const response = await user.updateUserData(req.params.id, req.body);
+			res.status(201).send(response);
+		} catch (err) {
+			next(err);
+		}
+	};
+
+	sendSms = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+		try {
+			const response = await user.sendSmsByLamda();
 			res.status(201).send(response);
 		} catch (err) {
 			next(err);

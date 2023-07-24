@@ -7,11 +7,11 @@ import { Request, Response, NextFunction, Errback } from 'express';
 dotenv.config();
 
 const app = express();
-const uri = 'mongodb+srv://shivanggarg:lELG6g5ngBSYIysk@cluster0.r3uyfns.mongodb.net/?retryWrites=true&w=majority';
+
 app.use(express.json());
 mongoose.set('strictQuery', false);
-mongoose.connect(uri);
-console.log(process.env.MONGO_URL); 
+mongoose.connect(process.env.MONGO_URL || '');
+
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', function () {

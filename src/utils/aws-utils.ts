@@ -1,9 +1,7 @@
 import AWS from 'aws-sdk';
 import { InvocationRequest, NamespacedFunctionName } from 'aws-sdk/clients/lambda';
-import dotenv from 'dotenv';
 
-dotenv.config();
-
+console.log('fvhbfgijvnfv',process.env);
 AWS.config.update({region:process.env.REGION});
 AWS.config.update({accessKeyId: process.env.AWSACCESSKEYID, secretAccessKey: process.env.SECRETACCESSKEY});
 

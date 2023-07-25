@@ -24,6 +24,11 @@ class Auth {
 		return login;
 	};
 
+	resetPassword = async (loginBody: loginType) => {
+		const user = await Login.findOneAndUpdate({ userName: loginBody.userName }, { password: loginBody.password }, { new: true });
+		return createToken({ id: user?._id, username: user?.userName });
+	}
+
 }
 
 const authObject = Object.freeze(new Auth());

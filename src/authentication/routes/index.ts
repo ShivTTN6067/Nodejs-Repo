@@ -8,4 +8,6 @@ authRouters.post('/', bodyValidator, authController.authentication);
 
 authRouters.post('/sign-up', authController.signUp);
 
+authRouters.put('/reset-password', authController.resetPassword);
+
 export default authRouters;

@@ -1,7 +1,7 @@
 import userModel from '../model/user-model';
-import { userType } from '../types/user-types';
-import { callAwsLamda } from '../utils/aws-utils';
-import { LAMDA_FUNCTIONS } from '../constants';
+import { userType } from '../../types/user-types';
+import { callAwsLamda } from '../../utils/aws-utils';
+import { LAMDA_FUNCTIONS } from '../../constants';
 class User {
 
 	getAllUsersData = async () => {

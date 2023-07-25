@@ -6,6 +6,7 @@ import { Request, Response, NextFunction, Errback } from 'express';
 
 dotenv.config();
 
+require('./utils');
 const app = express();
 
 app.use(express.json());

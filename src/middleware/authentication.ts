@@ -5,7 +5,7 @@ export const authChecker = async (req: Request, res: Response, next: NextFunctio
 	try {
 		if (req && req?.headers && req?.headers['authorization']?.split(' ')[1]) {
 			const user = await verifyToken(req?.headers['authorization']?.split(' ')[1]);
-			console.log("user",user);
+			console.log('user',user);
 			next();
 		}
 	} catch (err) {

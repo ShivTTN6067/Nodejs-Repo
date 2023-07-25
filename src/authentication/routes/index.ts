@@ -8,6 +8,4 @@ authRouters.post('/', bodyValidator, authController.authentication);
 
 authRouters.post('/sign-up', authController.signUp);
 
-authRouters.post('/log-out', authController.logOut);
-
 export default authRouters;

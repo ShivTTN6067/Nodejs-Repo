@@ -21,10 +21,6 @@ class AuthController {
 		}
 	};
 
-	logOut =async () => {
-        
-	};
-
 }
 
 const authControllerObject = Object.freeze(new AuthController());

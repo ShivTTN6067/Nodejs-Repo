@@ -125,5 +125,4 @@ describe('PUT /users/', () => {
 			.send();
 		expect(response.statusCode).toEqual(404);
 	});
-
 });

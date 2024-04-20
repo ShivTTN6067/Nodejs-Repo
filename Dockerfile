@@ -1,4 +1,4 @@
-FROM node:14
+FROM node:18.20.1
 
 # Install npm
 RUN apt-get install -y git-core curl build-essential openssl libssl-dev \
